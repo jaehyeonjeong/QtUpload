@@ -10,14 +10,14 @@ ClientManager::ClientManager(QWidget *parent) :
     ui(new Ui::ClientManager)
 {
     ui->setupUi(this);
-    ui->toolBox->setCurrentIndex(0);
+    ui->toolBox->setCurrentIndex(0);                                    /*toolbox의 시작 위치는 0번째 부터(Input인자)*/
 
-    QAction* removeAction = new QAction(tr("&Remove"));
-    connect(removeAction, SIGNAL(triggered()), SLOT(removeItem()));
+    QAction* removeAction = new QAction(tr("&Remove"));                 /*제거 액션 할당*/
+    connect(removeAction, SIGNAL(triggered()), SLOT(removeItem()));     /*removeAction 연결*/
 
-    menu = new QMenu;
-    menu->addAction(removeAction);
-    ui->ClientTreeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
+    menu = new QMenu;                                                   /*메뉴 할당*/
+    menu->addAction(removeAction);                                      /*메뉴에 removeAction 추가*/
+    ui->ClientTreeWidget->setContextMenuPolicy(Qt::CustomContextMenu);  /*contextMenuEvent() 처리기가 호출됨을 의미*/
     connect(ui->ClientTreeWidget, SIGNAL(customContextMenuRequested(QPoint)),
             this, SLOT(showContextMenu(QPoint)));
 
@@ -66,10 +66,10 @@ ClientManager::~ClientManager()
     file.close( );
 }
 
-QString ClientManager::getClientName()
-{
-    return ui->CNameLineEdit->text();
-}
+//QString ClientManager::getClientName()
+//{
+//    return ui->CNameLineEdit->text();
+//}
 
 int ClientManager::makeID( )
 {

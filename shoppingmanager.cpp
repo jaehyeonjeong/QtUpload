@@ -48,7 +48,7 @@ ShoppingManager::ShoppingManager(QWidget *parent) :
     }
     file.close( );
 
-    ui->SDateLineEdit->setPlaceholderText("press Enter text about today");
+    ui->SDateLineEdit->setPlaceholderText("press Enter");
 
 }
 
