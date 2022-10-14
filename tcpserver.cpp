@@ -21,15 +21,16 @@ TCPServer::TCPServer(QWidget *parent)
     setLayout(mainLayout);
 
     tcpServer = new QTcpServer(this);
+    tcpServer->listen(QHostAddress::Any, 8000);
     connect(tcpServer, SIGNAL(newConnection()), SLOT(clientConnect()));
-    if(!tcpServer->listen())
-    {
-        QMessageBox::critical(this, tr("Echo Server"),
-                              tr("Unable to start the server: %1.")\
-                              .arg(tcpServer->errorString()));
-        close();
-        return;
-    }
+//    if(!tcpServer->listen())
+//    {
+//        QMessageBox::critical(this, tr("Echo Server"),
+//                              tr("Unable to start the server: %1.")\
+//                              .arg(tcpServer->errorString()));
+//        close();
+//        return;
+//    }
 
     infoLabel->setText(tr("The server is running on port %1.")
                        .arg(tcpServer->serverPort()));

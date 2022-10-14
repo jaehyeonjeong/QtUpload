@@ -2,9 +2,17 @@
 #define CHETTING_H
 
 #include <QWidget>
+#include <QDataStream>
 
-#include <QTcpServer>
-#include <QTcpSocket>
+class QTextEdit;
+class QLineEdit;
+class QTcpSocket;
+class QTcpServer;
+
+//typedef struct{
+//    int type;
+//    char data[1020];
+//}chatProtocolType;
 
 namespace Ui {
 class Chetting;
