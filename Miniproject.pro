@@ -1,6 +1,6 @@
 QT       += core gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets network
 
 CONFIG += c++17
 
@@ -16,7 +16,9 @@ SOURCES += \
     product.cpp \
     productmanager.cpp \
     shopping.cpp \
-    shoppingmanager.cpp
+    shoppingmanager.cpp \
+    tcpclient.cpp \
+    tcpserver.cpp
 
 HEADERS += \
     client.h \
@@ -25,7 +27,9 @@ HEADERS += \
     product.h \
     productmanager.h \
     shopping.h \
-    shoppingmanager.h
+    shoppingmanager.h \
+    tcpclient.h \
+    tcpserver.h
 
 FORMS += \
     clientmanager.ui \
