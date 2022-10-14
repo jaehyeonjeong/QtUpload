@@ -8,6 +8,9 @@
 #include <QFile>
 #include <QMenu>
 
+#include <QDateTimeEdit>
+#include <QDateTime>
+
 
 ShoppingManager::ShoppingManager(QWidget *parent) :
     QWidget(parent),
@@ -45,7 +48,7 @@ ShoppingManager::ShoppingManager(QWidget *parent) :
     }
     file.close( );
 
-
+    ui->SDateLineEdit->setPlaceholderText("press Enter text about today");
 
 }
 
@@ -205,5 +208,13 @@ void ShoppingManager::on_SearchButton_clicked()
             ui->SearchTreeWidget->addTopLevelItem(item);
         }
     }
+}
+
+
+void ShoppingManager::on_SDateLineEdit_returnPressed()
+{
+    QDateTimeEdit* datetimeedit = new QDateTimeEdit(QDate::currentDate(), 0);
+    //datetimeedit->setCalendarPopup(true);
+    ui->SDateLineEdit->setText(datetimeedit->text());
 }
 

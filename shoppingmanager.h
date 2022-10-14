@@ -33,11 +33,11 @@ public slots:
 private slots:
     void on_CancelButton_clicked();
 
-
-
     void on_ModifyButton_clicked();
 
     void on_SearchButton_clicked();
+
+    void on_SDateLineEdit_returnPressed();
 
 private:
     Ui::ShoppingManager *ui;

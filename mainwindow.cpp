@@ -44,7 +44,7 @@ MainWindow::MainWindow(QWidget *parent)
     subWindow->setWidget(shoppingmanager);
     subWindow->setAttribute(Qt::WA_DeleteOnClose);
     subWindow->setWindowTitle("Shopping Window");
-    subWindow->setGeometry(0, 0, 550, 590);
+    subWindow->setGeometry(0, 0, 550, 400);
     ui->mdiArea->addSubWindow(subWindow);
 
     /*TCP 채팅 위젯 추가*/
@@ -53,23 +53,26 @@ MainWindow::MainWindow(QWidget *parent)
     TcpSubWindow[0]->setAttribute(Qt::WA_DeleteOnClose);
     TcpSubWindow[0]->setWindowTitle("TcpServer");
     ui->mdiArea->addSubWindow(TcpSubWindow[0]);
+    TcpSubWindow[0]->setGeometry(550,0, 240, 100);
 
     TcpSubWindow[1] = new QMdiSubWindow;
     TcpSubWindow[1]->setWidget(tcpclient);
     TcpSubWindow[1]->setAttribute(Qt::WA_DeleteOnClose);
-    TcpSubWindow[1]->setWindowTitle("TcpClient");
+    TcpSubWindow[1]->setWindowTitle("client chetting");
     ui->mdiArea->addSubWindow(TcpSubWindow[1]);
+    TcpSubWindow[1]->setGeometry(0, 400, 300, 350);
 
     TcpSubWindow[2] = new QMdiSubWindow;
     TcpSubWindow[2]->setWidget(chettingapp);
     TcpSubWindow[2]->setAttribute(Qt::WA_DeleteOnClose);
-    TcpSubWindow[2]->setWindowTitle("Chetting Application");
+    TcpSubWindow[2]->setWindowTitle("manager Chetting Application");
     ui->mdiArea->addSubWindow(TcpSubWindow[2]);
+    TcpSubWindow[2]->setGeometry(300, 400, 490, 350);
 
 
     /*탭과 MDIAREA 스핀로드*/
     QList<int> list;
-    list << 700 << 600;
+    list << 700 << 800;
     ui->splitter->setSizes(list);
 
     /*메인윈도우에서 데이터 커넥트*/
@@ -82,13 +85,13 @@ MainWindow::MainWindow(QWidget *parent)
     connect(productmanager, SIGNAL(ProductPrices(QString)),
             shoppingmanager, SLOT(PreceivePrice(QString)));
 
-    this->resize(1300, 600);
+    this->resize(1500, 800);
 
-//    connect(chettingapp->clientsocket,
-//            &QAbstractSocket::errorOccurred,
-//            [=]{qDebug() << chettingapp->clientsocket->errorString();
-//    });
-//    connect(chettingapp->clientsocket, SIGNAL(readyRead()), SLOT(rechoData()));
+    //    connect(chettingapp->clientsocket,
+    //            &QAbstractSocket::errorOccurred,
+    //            [=]{qDebug() << chettingapp->clientsocket->errorString();
+    //    });
+    //    connect(chettingapp->clientsocket, SIGNAL(readyRead()), SLOT(rechoData()));
 
 
 }

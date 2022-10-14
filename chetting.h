@@ -23,6 +23,7 @@ private slots:
     /*server slots*/
     void clientConnect();
     void echoData();
+    void removeItem();
 
     /*client slots*/
     void clientechoData();

@@ -13,6 +13,7 @@ Chetting::Chetting(QWidget *parent) :
 
     /*tcp_server*/
     tcpServer = new QTcpServer(this);
+    //tcpServer->listen(QHostAddress::Any, 8000);
     connect(tcpServer, SIGNAL(newConnection()), SLOT(clientConnect()));
     if(!tcpServer->listen())
     {
@@ -85,6 +86,13 @@ void Chetting::clientConnect()
     ui->serverstatus->setText("new connection is established...");
 
     serverList.append(clientConnection);        // QList<QTcpSocket*> clientList;
+}
+
+void Chetting::removeItem()
+{
+    QTcpSocket* clientConnection = dynamic_cast<QTcpSocket*>(sender());
+    serverList.removeOne(clientConnection);
+    clientConnection->deleteLater();
 }
 
 /*tcp client*/
