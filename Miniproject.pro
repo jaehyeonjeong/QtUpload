@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    chetting.cpp \
     client.cpp \
     clientmanager.cpp \
     main.cpp \
@@ -21,6 +22,7 @@ SOURCES += \
     tcpserver.cpp
 
 HEADERS += \
+    chetting.h \
     client.h \
     clientmanager.h \
     mainwindow.h \
@@ -32,6 +34,7 @@ HEADERS += \
     tcpserver.h
 
 FORMS += \
+    chetting.ui \
     clientmanager.ui \
     mainwindow.ui \
     productmanager.ui \

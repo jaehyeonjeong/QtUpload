@@ -8,6 +8,8 @@ class ProductManager;
 class ShoppingManager;
 class TCPServer;
 class TCPClient;
+class Chetting;
+class QTcpSocket;
 
 class QMdiSubWindow;
 
@@ -41,7 +43,11 @@ private:
     TCPServer* tcpserver;
     TCPClient* tcpclient;
 
+    Chetting* chettingapp;
+
     QMdiSubWindow* subWindow;
-    QMdiSubWindow* TcpSubWindow[2];
+    QMdiSubWindow* TcpSubWindow[3];
+
+//    QTcpSocket* clientsocket;
 };
 #endif // MAINWINDOW_H

@@ -3,8 +3,10 @@
 #include "clientmanager.h"
 #include "productmanager.h"
 #include "shoppingmanager.h"
+#include "chetting.h"
 #include "tcpclient.h"
 #include "tcpserver.h"
+
 
 #include <QMdiSubWindow>
 
@@ -17,29 +19,32 @@ MainWindow::MainWindow(QWidget *parent)
     productmanager = new ProductManager(this);
     shoppingmanager = new ShoppingManager(this);
 
-//    TCPServer* tcpserver;
-//    TCPClient* tcpclient;
+    //    TCPServer* tcpserver;
+    //    TCPClient* tcpclient;
     tcpserver = new TCPServer(this);
     tcpclient = new TCPClient(this);
+
+    chettingapp = new Chetting(this);
+
 
     ui->tabWidget->addTab(clientmanager, tr("&ClientTab"));
     ui->tabWidget->addTab(productmanager, tr("&ProductTab"));
     //ui->tabWidget->addTab(shoppingmanager, tr("&ShoppingTab"));
 
-//    QMdiArea mdiArea;
-//    QMdiSubWindow *subWindow1 = new QMdiSubWindow;
-//    subWindow1->setWidget(internalWidget1);
-//    subWindow1->setAttribute(Qt::WA_DeleteOnClose);
-//    mdiArea.addSubWindow(subWindow1);
+    //    QMdiArea mdiArea;
+    //    QMdiSubWindow *subWindow1 = new QMdiSubWindow;
+    //    subWindow1->setWidget(internalWidget1);
+    //    subWindow1->setAttribute(Qt::WA_DeleteOnClose);
+    //    mdiArea.addSubWindow(subWindow1);
 
-//    QMdiSubWindow *subWindow2 =
-//        mdiArea.addSubWindow(internalWidget2);
+    //    QMdiSubWindow *subWindow2 =
+    //        mdiArea.addSubWindow(internalWidget2);
 
     subWindow = new QMdiSubWindow;
     subWindow->setWidget(shoppingmanager);
     subWindow->setAttribute(Qt::WA_DeleteOnClose);
     subWindow->setWindowTitle("Shopping Window");
-    subWindow->resize(600, 600);
+    subWindow->setGeometry(0, 0, 550, 590);
     ui->mdiArea->addSubWindow(subWindow);
 
     /*TCP 채팅 위젯 추가*/
@@ -54,6 +59,12 @@ MainWindow::MainWindow(QWidget *parent)
     TcpSubWindow[1]->setAttribute(Qt::WA_DeleteOnClose);
     TcpSubWindow[1]->setWindowTitle("TcpClient");
     ui->mdiArea->addSubWindow(TcpSubWindow[1]);
+
+    TcpSubWindow[2] = new QMdiSubWindow;
+    TcpSubWindow[2]->setWidget(chettingapp);
+    TcpSubWindow[2]->setAttribute(Qt::WA_DeleteOnClose);
+    TcpSubWindow[2]->setWindowTitle("Chetting Application");
+    ui->mdiArea->addSubWindow(TcpSubWindow[2]);
 
 
     /*탭과 MDIAREA 스핀로드*/
@@ -73,6 +84,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->resize(1300, 600);
 
+//    connect(chettingapp->clientsocket,
+//            &QAbstractSocket::errorOccurred,
+//            [=]{qDebug() << chettingapp->clientsocket->errorString();
+//    });
+//    connect(chettingapp->clientsocket, SIGNAL(readyRead()), SLOT(rechoData()));
+
+
 }
 
 MainWindow::~MainWindow()
@@ -81,5 +99,13 @@ MainWindow::~MainWindow()
     delete clientmanager;
     delete productmanager;
     delete shoppingmanager;
+
+    delete tcpclient;
+    delete tcpserver;
+
+    for(int i = 0; i < 3; i++)
+    {
+        delete TcpSubWindow[i];
+    }
 }
 
